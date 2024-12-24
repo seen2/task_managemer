@@ -4,8 +4,8 @@ import jakarta.validation.constraints.NotEmpty;
 
 public record Task(
     
-    String userId,
-    String taskId,
+    int userId,
+    int id,
     String title,
     @NotEmpty
     String description,

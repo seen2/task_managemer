@@ -30,30 +30,30 @@ public class TaskController {
   @GetMapping("/tasks")
   public List<Task> getMethodName(@RequestParam(required = false) boolean status,
       @RequestParam(required = false) String search) {
-    return taskRepository.searchTask(search, status);
+    return taskRepository.findAll();
   }
 
   @GetMapping("/tasks/{id}")
-  public Optional<Task> getTaskById(@PathVariable String id) {
-    return taskRepository.findTaskById(id);
+  public Optional<Task> getTaskById(@PathVariable Integer id) {
+    return taskRepository.findById(id);
   }
 
   @PostMapping("/tasks")
   @ResponseStatus(HttpStatus.CREATED)
   public void createTasks(@RequestBody @Valid Task task) {
-    taskRepository.addTask(task);
+    taskRepository.save(task);
   }
 
   @PutMapping("tasks/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void updateTasksByID(@PathVariable String id, @RequestBody @Valid Task task) {
-    taskRepository.updateTask(task, id);
+    taskRepository.save(task);
   }
 
   @DeleteMapping("/tasks/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void deleteTaskById(@PathVariable String id) {
-    taskRepository.deleteTask(id);
+  public void deleteTaskById(@PathVariable Integer id) {
+    taskRepository.deleteById(id);
   }
 
 }
